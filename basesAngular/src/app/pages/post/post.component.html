@@ -1,0 +1,8 @@
+<h1>Post</h1>
+
+<ul class="list-group" >
+  <app-onepost *ngFor="let mensaje of mensajesPost | async"
+  [mensaje]="mensaje" (click)="Escuchar( $event )">
+
+  </app-onepost>
+</ul>
