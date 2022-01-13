@@ -59,11 +59,19 @@ export class HomePage implements OnInit {
       name: 'Grid',
       redirectTo: '/grid'
     },
+      {
+      icon: 'infinite-outline',
+      name: 'Infinite',
+      redirectTo: '/infinite'
+    },
   ];
 
-  constructor() { }
+  constructor() {
+    // code
+  }
 
   ngOnInit() {
+    // code
   }
 
 }
