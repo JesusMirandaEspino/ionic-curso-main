@@ -7,7 +7,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-padding">
 
   <ion-list>
 
@@ -23,5 +23,36 @@
 
   </ion-list>
 
+
+
+
+  <form  #formulario="ngForm"  (ngSubmit)="onSubmit()"  >
+
+    <ion-list-header>
+      <ion-label>Formulario valido: {{ formulario.valid }}  </ion-label>
+    </ion-list-header>
+
+
+    <ion-item>
+      <ion-label>Email:</ion-label>
+      <ion-input type="email" placeholder="Email"
+      pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$"
+      required [(ngModel)]="email"  name="email" >
+    </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Password:</ion-label>
+      <ion-input type="password" placeholder="Password"
+      required [(ngModel)]="password"  name="password" >
+    </ion-input>
+    </ion-item>
+
+    <ion-button [disabled]="formulario.invalid" expand="block" >
+      Sign In
+    </ion-button>
+
+
+  </form>
 
 </ion-content>
