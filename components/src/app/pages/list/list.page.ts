@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { DataService } from '../../services/data.service';
 
 @Component({
   selector: 'app-list',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListPage implements OnInit {
 
-  constructor() { }
+  usuarios: Observable<any>;
+
+  constructor( private dataService: DataService) {
+
+
+  }
 
   ngOnInit() {
+    this.usuarios =  this.dataService.getUsuario();
   }
 
 }
