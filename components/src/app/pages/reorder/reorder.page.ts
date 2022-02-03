@@ -7,9 +7,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReorderPage implements OnInit {
 
+  personajes: string[] = [ 'Spiderman', 'Batman', 'Ironman', 'Goku', 'Vegeta' ];
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  doReorder( event: any ){
+
+
+    const mover = this.personajes.splice( event.detail.from, 1 )[0];
+    this.personajes.splice( event.detail.to, 0, mover  )
+
+    event.detail.complete();
   }
 
 }
