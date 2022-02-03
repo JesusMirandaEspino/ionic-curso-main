@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReorderPage implements OnInit {
 
+  reorderEnable: boolean = true;
+
   personajes: string[] = [ 'Spiderman', 'Batman', 'Ironman', 'Goku', 'Vegeta' ];
 
   constructor() { }
