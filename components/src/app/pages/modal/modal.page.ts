@@ -9,6 +9,10 @@ import { ModalinfoPage } from '../modalinfo/modalinfo.page';
 })
 export class ModalPage implements OnInit {
 
+
+  public nombre = 'Jesus';
+  public apellido = 'Miranda'
+
   constructor(public modalController: ModalController  ) { }
 
   ngOnInit() {
@@ -20,8 +24,18 @@ export class ModalPage implements OnInit {
 
     const modal = await this.modalController.create({
       component: ModalinfoPage,
+      componentProps: {
+            nombre: this.nombre,
+            apellido : this.apellido,
+      }
     });
     await modal.present();
+
+    const { data } = await modal.onDidDismiss();
+
+    this.nombre = data.nombre;
+    this.apellido = data.apellido;
+
   }
 
 
