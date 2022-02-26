@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+  <ion-buttons slot="start">
+    <ion-back-button  defaultHref="/" color="primary"></ion-back-button>
+  </ion-buttons>
+    <ion-title> Progress Range </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+
+  <ion-progress-bar type="determinate" [value]="percentage" color="primary"></ion-progress-bar>
+
+    <ion-item>
+    <ion-range [min]="min" [max]="max" color="secondary" step="1" (ionChange)="rango( $event )" >
+      <ion-label slot="start">0</ion-label>
+      <ion-label slot="end">100</ion-label>
+    </ion-range>
+  </ion-item>
+
+</ion-content>
