@@ -27,8 +27,8 @@ async presentPopover(ev: any) {
     });
     await popover.present();
 
-    const { role } = await popover.onDidDismiss();
-    console.log('onDidDismiss resolved with role', role);
+    const { data } = await popover.onWillDismiss();
+    console.log( data );
   }
 
 
