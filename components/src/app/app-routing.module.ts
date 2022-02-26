@@ -83,6 +83,10 @@ const routes: Routes = [
     path: 'progressrange',
     loadChildren: () => import('./pages/progressrange/progressrange.module').then( m => m.ProgressrangePageModule)
   },
+  {
+    path: 'refresh',
+    loadChildren: () => import('./pages/refresh/refresh.module').then( m => m.RefreshPageModule)
+  },
 ];
 
 @NgModule({
