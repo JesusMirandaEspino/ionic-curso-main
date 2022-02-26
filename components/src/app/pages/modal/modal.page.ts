@@ -9,7 +9,6 @@ import { ModalinfoPage } from '../modalinfo/modalinfo.page';
 })
 export class ModalPage implements OnInit {
 
-
   public nombre = 'Jesus';
   public apellido = 'Miranda'
 
@@ -18,7 +17,6 @@ export class ModalPage implements OnInit {
   ngOnInit() {
     // code
   }
-
 
   async mostrartModal(){
 
