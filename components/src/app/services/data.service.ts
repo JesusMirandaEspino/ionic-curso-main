@@ -24,5 +24,9 @@ getMenuOption(){
   return this.http.get<Components[]>(  '/assets/data/menuOptions.json' );
 }
 
+getHeroes(){
+  return this.http.get<any[]>(  '/assets/data/heroes.json' );
+}
+
 
 }
