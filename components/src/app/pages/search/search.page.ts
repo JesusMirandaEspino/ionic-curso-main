@@ -9,6 +9,7 @@ import { DataService } from '../../services/data.service';
 export class SearchPage implements OnInit {
 
   albums: any[] = [];
+  textoBuscar: string = '';
 
   constructor( private dataService: DataService ) {
     // code
@@ -24,10 +25,10 @@ export class SearchPage implements OnInit {
   }
 
 
-ionSearchChange( event: string ){
+ionSearchChange( event: any){
 
+  this.textoBuscar = event.detail.value;
 
-  console.log(event );
 }
 
 }
