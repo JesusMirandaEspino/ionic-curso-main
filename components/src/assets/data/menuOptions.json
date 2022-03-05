@@ -93,5 +93,10 @@
       "icon": "arraw-down-working-outline",
       "name": "refresh",
       "redirectTo": "/refresh"
+    },
+    {
+      "icon": "search-outline",
+      "name": "Search",
+      "redirectTo": "/search"
     }
   ]
