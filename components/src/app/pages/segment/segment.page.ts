@@ -10,6 +10,7 @@ import { DataService } from '../../services/data.service';
 export class SegmentPage implements OnInit {
 
   heroes: Observable<any>;
+  publisher: string = '';
 
   constructor( private dataService: DataService ) {
     // code
@@ -24,10 +25,13 @@ export class SegmentPage implements OnInit {
 
   }
 
-  segmentChanged( event ){
+  segmentChanged( event: any ){
 
-
-
+    if( event.detail.value === 'todos' ){
+      this.publisher = '';
+    }else{
+      this.publisher= event.detail.value;
+    }
   }
 
 }

@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class FiltroPipe implements PipeTransform {
 
-  transform(arr: any[], text: string, termino: string): any[] {
+  transform(arr: any[], text: string, columna: string = 'title'): any[] {
 
     if( text === '' ){
       return arr;
@@ -16,7 +16,7 @@ export class FiltroPipe implements PipeTransform {
     }
 
     text = text.toLowerCase();
-    return arr.filter( item => item[termino].toLowerCase().includes( text )  );
+    return arr.filter( item => item[columna].toLowerCase().includes( text )  );
   }
 
 }
