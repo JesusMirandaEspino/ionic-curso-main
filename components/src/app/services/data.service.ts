@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Components } from '../interfaces/interfaces';
-
+import { delay } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
@@ -25,7 +25,10 @@ getMenuOption(){
 }
 
 getHeroes(){
-  return this.http.get<any[]>(  '/assets/data/heroes.json' );
+  return this.http.get<any[]>(  '/assets/data/heroes.json' )
+  .pipe(
+    delay( 1500 )
+  );
 }
 
 

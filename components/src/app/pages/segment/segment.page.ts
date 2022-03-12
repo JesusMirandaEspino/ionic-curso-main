@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { DataService } from '../../services/data.service';
 
+
 @Component({
   selector: 'app-segment',
   templateUrl: './segment.page.html',

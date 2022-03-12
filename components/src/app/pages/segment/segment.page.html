@@ -26,7 +26,11 @@
   </ion-segment>
 
 
-  <ion-list>
+
+
+
+
+  <ion-list class="animate__animated animate__backInDown">
     <ion-item *ngFor="let heroesSelect of (heroes | async) | filtro: publisher:'publisher' " >
       <ion-label>
         <h3>{{ heroesSelect.superhero }} <small> {{ heroesSelect.alter_ego }} </small> </h3>
@@ -34,6 +38,19 @@
       </ion-label>
       <ion-label slot="end" class="ion-text-right" >
         {{ heroesSelect.publisher }}
+      </ion-label >
+    </ion-item>
+  </ion-list>
+
+
+  <ion-list *ngIf="(heroes | async) === null" >
+    <ion-item *ngFor="let item of [1,1,1,1,1,1,1] " >
+      <ion-label>
+        <ion-skeleton-text animated style="width: 70%"></ion-skeleton-text>
+        <p> <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text> </p>
+      </ion-label>
+      <ion-label slot="end" class="ion-text-right" >
+        <ion-skeleton-text slot="end" animated style="width: 20%"></ion-skeleton-text>
       </ion-label >
     </ion-item>
   </ion-list>
