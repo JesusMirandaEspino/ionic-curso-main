@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Components } from './interfaces/interfaces';
 import { DataService } from './services/data.service';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
