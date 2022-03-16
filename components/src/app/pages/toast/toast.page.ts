@@ -34,13 +34,11 @@ async toast2(){
           side: 'start',
           text: 'Favorite',
           handler: () => {
-            console.log('Favorite clicked');
           }
         }, {
           text: 'Done',
           role: 'cancel',
           handler: () => {
-            console.log('Cancel clicked');
           }
         }
       ]
