@@ -11,6 +11,7 @@ export class ToastPage implements OnInit {
   constructor( public toastController: ToastController ) { }
 
   ngOnInit() {
+    // code
   }
 
 
