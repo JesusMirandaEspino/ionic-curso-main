@@ -107,6 +107,10 @@ const routes: Routes = [
     path: 'toast',
     loadChildren: () => import('./pages/toast/toast.module').then( m => m.ToastPageModule)
   },
+  {
+    path: 'capacitor',
+    loadChildren: () => import('./pages/capacitor/capacitor.module').then( m => m.CapacitorPageModule)
+  },
 ];
 
 @NgModule({
