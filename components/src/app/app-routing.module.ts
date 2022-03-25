@@ -111,6 +111,10 @@ const routes: Routes = [
     path: 'capacitor',
     loadChildren: () => import('./pages/capacitor/capacitor.module').then( m => m.CapacitorPageModule)
   },
+  {
+    path: 'cordova',
+    loadChildren: () => import('./pages/cordova/cordova.module').then( m => m.CordovaPageModule)
+  },
 ];
 
 @NgModule({
