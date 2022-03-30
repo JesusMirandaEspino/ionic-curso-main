@@ -1,25 +1,21 @@
-import { Component, OnInit } from '@angular/core';
-import { Newsresponse } from '../../interfaces';
-import { NewsService } from '../../services/news.service';
+// code
+import { Component } from '@angular/core';
+
 
 @Component({
   selector: 'app-tabs',
   templateUrl: 'tabs.page.html',
   styleUrls: ['tabs.page.scss']
 })
-export class TabsPage implements OnInit {
+export class TabsPage  {
 
 
 
-  constructor( private newsServices: NewsService ) {
+  constructor() {
     // code
   }
 
-  ngOnInit() {
-    this.newsServices.getTopHeadNews().subscribe( (articles)   => {
-      console.log( articles );
-    });
-  }
+
 
 
 }
