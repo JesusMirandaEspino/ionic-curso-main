@@ -12,12 +12,24 @@ const apiKey = environment.apikey;
 })
 export class NewsService {
 
+  public url: string = `https://newsapi.org/v2/top-headlines?country=us`;
+
   constructor( private http: HttpClient ) {
   }
 
 
   getTopHeadNews():Observable<Article[]>{
-    return this.http.get<Newsresponse>( `https://newsapi.org/v2/top-headlines?country=us&category=business`, {
+    return this.http.get<Newsresponse>( `${this.url}&category=business`, {
+      params: {
+        apiKey
+      }
+    }).pipe(
+      map( ( {articles} ) => articles )
+    );
+  }
+
+  getTopHeadNewsByCategory( category:string ):Observable<Article[]>{
+      return this.http.get<Newsresponse>( `${this.url}&category=${category}`, {
       params: {
         apiKey
       }
