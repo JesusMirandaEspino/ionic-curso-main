@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { Newsresponse, Article, ArticlesBycategoryAndPage } from '../interfaces';
 import { map } from 'rxjs/operators'
@@ -22,24 +22,21 @@ export class NewsService {
 
 
   getTopHeadNews():Observable<Article[]>{
-    return this.http.get<Newsresponse>( `${this.url}&category=business`, {
-      params: {
-        apiKey
-      }
-    }).pipe(
-      map( ( {articles} ) => articles )
-    );
+    return this.getArticlesByCategory( 'business' );
   }
 
   getTopHeadNewsByCategory( category:string, loadMore: boolean = false ):Observable<Article[]>{
 
-      return this.http.get<Newsresponse>( `${this.url}&category=${category}`, {
-      params: {
-        apiKey
-      }
-    }).pipe(
-      map( ( {articles} ) => articles )
-    );
+
+    if( loadMore ){
+      return this.getArticlesByCategory( category );
+    }
+
+    if( this.ArticlesBycategoryAndPage[category] ){
+      return of(this.ArticlesBycategoryAndPage[category].articles);
+    }
+
+      return this.getArticlesByCategory( category );
   }
 
 
@@ -57,9 +54,22 @@ export class NewsService {
 
     const page = this.ArticlesBycategoryAndPage[category].page += 1;
 
-    return this.http.get<Newsresponse>( `${this.url}&category=${category}&page=${page}`)
+    return this.http.get<Newsresponse>( `${this.url}&category=${category}&page=${page}`, {
+      params: {
+        apiKey
+      }} )
     .pipe(
-      map( ( {articles} ) => articles )
+      map( ( {articles} ) => {
+
+        if( articles.length === 0 ) return this.ArticlesBycategoryAndPage[category].articles;
+
+        this.ArticlesBycategoryAndPage[category] = {
+          page: page,
+          articles: [ ...this.ArticlesBycategoryAndPage[category].articles, ...articles ]
+        }
+        return this.ArticlesBycategoryAndPage[category].articles;
+
+      })
     );
 
   }
