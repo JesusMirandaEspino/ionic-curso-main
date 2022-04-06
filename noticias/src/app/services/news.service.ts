@@ -14,7 +14,6 @@ export class NewsService {
 
   public url: string = `https://newsapi.org/v2/top-headlines?country=us`;
 
-
   private ArticlesBycategoryAndPage: ArticlesBycategoryAndPage = {};
 
   constructor( private http: HttpClient ) {
@@ -42,7 +41,6 @@ export class NewsService {
 
   getArticlesByCategory( category:string ):Observable<Article[]>{
 
-
     if( Object.keys( this.ArticlesBycategoryAndPage ).includes(category) ){
       // code this.ArticlesBycategoryAndPage[category].page += 1;
     }else{
@@ -68,10 +66,8 @@ export class NewsService {
           articles: [ ...this.ArticlesBycategoryAndPage[category].articles, ...articles ]
         }
         return this.ArticlesBycategoryAndPage[category].articles;
-
       })
     );
-
   }
 
 
