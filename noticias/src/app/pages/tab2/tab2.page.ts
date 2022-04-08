@@ -45,9 +45,9 @@ export class Tab2Page implements OnInit {
 
       setTimeout( ()  => {
         this.infiniteScroll.complete();
-      })
+      });
 
-    })
+    });
   }
 
 }
