@@ -25,11 +25,27 @@ export class Tab2Page implements OnInit {
 
 
   segmentChanged(event: any){
-    this.articles = [];
+    // code this.articles = [];
     this.selectedCategory = event.detail.value;
     this.newsService.getTopHeadNewsByCategory(this.selectedCategory).subscribe( (articles) => {
       this.articles.push( ...articles );
     });
+  }
+
+  loadData(event: any){
+    this.newsService.getTopHeadNewsByCategory(this.selectedCategory, true).subscribe( (articles) => {
+      this.articles = articles;
+
+      if( articles.length === this.articles.length ){
+        event.target.disabled = true;
+        return;
+      }
+
+      setTimeout( ()  => {
+        event.target.complete();
+      })
+
+    })
   }
 
 }
