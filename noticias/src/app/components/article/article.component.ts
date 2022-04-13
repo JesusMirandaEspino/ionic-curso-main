@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { InAppBrowser } from '@awesome-cordova-plugins/in-app-browser/ngx';
 import { ActionSheetController, Platform } from '@ionic/angular';
+import { SocialSharing } from '@awesome-cordova-plugins/social-sharing/ngx';
 
 @Component({
   selector: 'app-article',
@@ -14,7 +15,8 @@ export class ArticleComponent implements OnInit {
 
   constructor(  public iab: InAppBrowser,
                 private platform: Platform,
-                private actionSheet: ActionSheetController ) {
+                private actionSheet: ActionSheetController,
+                private socialSharing: SocialSharing ) {
     // code
   }
 
@@ -23,10 +25,9 @@ export class ArticleComponent implements OnInit {
   }
 
 async onOpenMenu(){
-  const actionSheet = await this.actionSheet.create({
-    header: 'Opciones',
-    buttons: [
-      {
+
+  const normalBtns = [
+          {
         text: 'Compartir',
         icon: 'share-outline',
         handler: () => this.onShareArticle()
@@ -36,15 +37,45 @@ async onOpenMenu(){
         icon: 'heart-outline',
         handler: () => this.onToggleFavorite()
       }
-    ]
+  ];
+
+    const share = {
+        text: 'Compartir',
+        icon: 'share-outline',
+        handler: () => this.onShareArticle()
+  }
+
+
+  if( this.platform.is( 'capacitor' ) ){
+    normalBtns.unshift( share )
+  }
+
+
+
+  const actionSheet = await this.actionSheet.create({
+    header: 'Opciones',
+    buttons: normalBtns
   });
+
+
+
+
+
 
   await actionSheet.present();
 
 }
 
 onShareArticle(){
-  console.log('share article');
+
+  const { title, source, url } = this.article
+
+  this.socialSharing.share(
+    title,
+    source.name,
+    null,
+    url
+  );
 }
 
 
