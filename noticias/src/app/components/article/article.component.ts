@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { InAppBrowser } from '@awesome-cordova-plugins/in-app-browser/ngx';
-import { Platform } from '@ionic/angular';
+import { ActionSheetController, Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-article',
@@ -12,7 +12,9 @@ export class ArticleComponent implements OnInit {
   @Input() article;
   @Input() i:number;
 
-  constructor( public iab: InAppBrowser, private platform: Platform ) {
+  constructor(  public iab: InAppBrowser,
+                private platform: Platform,
+                private actionSheet: ActionSheetController ) {
     // code
   }
 
@@ -20,10 +22,35 @@ export class ArticleComponent implements OnInit {
     // code
   }
 
-onClick(){
-  // code
+async onOpenMenu(){
+  const actionSheet = await this.actionSheet.create({
+    header: 'Opciones',
+    buttons: [
+      {
+        text: 'Compartir',
+        icon: 'share-outline',
+        handler: () => this.onShareArticle()
+      },
+      {
+        text: 'Favorito',
+        icon: 'heart-outline',
+        handler: () => this.onToggleFavorite()
+      }
+    ]
+  });
+
+  await actionSheet.present();
+
 }
 
+onShareArticle(){
+  console.log('share article');
+}
+
+
+onToggleFavorite(){
+  console.log('favorito');
+}
 
 openArticle(){
 
