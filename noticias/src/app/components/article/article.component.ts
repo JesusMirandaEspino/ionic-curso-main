@@ -28,6 +28,9 @@ export class ArticleComponent implements OnInit {
 
 async onOpenMenu(){
 
+
+  const articleInFavorite = this.storageService.articleInFavorites( this.article );
+
   const normalBtns = [
           {
         text: 'Compartir',
@@ -35,8 +38,8 @@ async onOpenMenu(){
         handler: () => this.onShareArticle()
       },
       {
-        text: 'Favorito',
-        icon: 'heart-outline',
+        text:  articleInFavorite ? 'Remover de Favorito' : 'Favorito',
+        icon: articleInFavorite ? 'heart' : 'heart-outline',
         handler: () => this.onToggleFavorite()
       }
   ];
