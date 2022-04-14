@@ -10,6 +10,11 @@ export class StorageServiceService {
   private _storage: Storage | null = null;
   private _localArticles: Article[] = [];
 
+
+  get getLocalArticles(){
+    return [ ...this._localArticles ];
+  }
+
   constructor(private storage: Storage) {
     this.init();
   }
@@ -30,6 +35,19 @@ export class StorageServiceService {
     }
 
     this._storage.set( 'articles', this._localArticles );
+  }
+
+
+  async loadfavorites(){
+
+    try{
+      const articles = await this._storage.get( 'articles' );
+      this._localArticles = articles || [];
+
+    }catch(error){
+
+    }
+
   }
 
 
